@@ -11,31 +11,24 @@ CSV.foreach("accounts.txt", {headers: true, return_headers: false}) do |row|
         category = row ["Category"].chomp
         amount = (inflow - outflow)
 
-        if balance[accounts] == nil
-            balance[accounts] = [amount]
-        else
-            balance[accounts] += [amount]
-        end
+  if 
+    balance[accounts] == nil
+    balance[accounts] = [amount]
+  else
+    balance[accounts] += [amount]
+  end
 
+  if 
+    data[accounts] == nil
+    data[accounts] = {}
+  end
 
-        if 
-            data[accounts] == nil
-            data[accounts] = {}
-        end
-
-
-        if 
-            data[accounts][category] == nil
-            data[accounts][category] = [amount]
-        else
-            data[accounts][category] += [amount]
-        end
-
-        # if soniatable[b] == nil
-        #    soniatable[b] = (inflow - outflow)
-        # else
-        #     soniatable[b] = soniatable[b] + (inflow - outflow)
-        # end
+  if 
+    data[accounts][category] == nil
+    data[accounts][category] = [amount]
+  else
+    data[accounts][category] += [amount]
+  end
 end
 
 input_array = ARGV
@@ -68,8 +61,8 @@ data.each do |account, categories|
   puts "Category, Total Spent, Average Transaction"
 categories.each do |category, transactions|
   puts "#{category}, $#{transactions.sum.round(2)}, $#{(transactions.sum.round(2)/transactions.count).round(2)}"
-end
-end
+  end
+  end
 
 else
 
